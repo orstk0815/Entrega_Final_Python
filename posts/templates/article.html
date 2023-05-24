@@ -1,0 +1,24 @@
+{% extends 'main.html' %} {% block content %}
+<div class="container">
+  <h2>Pagina de Articulos</h2>
+</div>
+
+<div class="container">
+  <div class="row row-cols-auto">
+    <div class="col">
+      <div class="card mb-3">
+        <img src="{{post.image.url}}" class="card-img-top" alt="..." />
+        <div class="card-body">
+          <h5 class="card-title">{{post.title}}</h5>
+          <h6 class="card-title">{{post.subtitle}}</h6>
+
+          <p class="card-text">{{post.description}}</p>
+          <p class="card-text">
+            <small class="text-body-secondary">Last updated 3 mins ago</small>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
