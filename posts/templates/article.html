@@ -11,8 +11,18 @@
         <div class="card-body">
           <h5 class="card-title">{{post.title}}</h5>
           <h6 class="card-title">{{post.subtitle}}</h6>
-
           <p class="card-text">{{post.description}}</p>
+          <a class="btn btn-primary" role="button" aria-disabled="true"
+            >Actualizar</a
+          >
+          <a
+            class="btn btn-danger"
+            role="button"
+            aria-disabled="true"
+            href="{% url 'delete_post' post.id %}?next={{post.id}}"
+            >Eliminar</a
+          >
+
           <p class="card-text">
             <small class="text-body-secondary">Last updated 3 mins ago</small>
           </p>

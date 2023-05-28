@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Posts
 from .forms import PostForm
 
@@ -16,5 +16,18 @@ def post (request, pk):
 
 def form(request):
     form = PostForm()
+    if request.method =="POST":
+        form = PostForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect("home")
     context = {"form":form}
     return render(request,"form_post.html",context )
+
+def deletepost(request, pk):
+    post = Posts.objects.get(id =pk)
+    if request.method == "POST":
+        post.delete()
+        return redirect("home")
+    context = {"post":post}
+    return render(request,"delete_posts.html", context)
