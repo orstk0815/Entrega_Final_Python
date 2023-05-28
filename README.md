@@ -13,7 +13,7 @@ Cerrar sesión cuando lo deseen.
 Iniciar sesión en caso de haber cerrado sesión previamente.
 Es importante destacar que la opción de editar y eliminar artículos está disponible únicamente para el autor de la publicación.
 
-##Tecnología Utilizada
+## Tecnología Utilizada
 Front-End
   + HTML 5
   + CSS 3
@@ -23,8 +23,8 @@ Back-End
   + Python 3.10.4
   + Django 4.0
  
-##Pruebas Realizadas
+## Pruebas Realizadas
   +pendientes
  
-##Video Demostración
+## Video Demostración
   https://
