@@ -1,7 +1,7 @@
 # Entrega_Final_Python
 Entrega final Python cursada 40440
 
-##Descripción del Proyecto:
+## Descripción del Proyecto:
 
 Este proyecto consiste en una página web donde los usuarios pueden crear, modificar y eliminar artículos en un blog. Los usuarios podrán explorar los diferentes artículos y también tendrán la posibilidad de crear sus propias publicaciones. Para ello, deberán registrarse y luego iniciar sesión en la plataforma.
 Los usuarios podrán llevar a cabo las siguientes acciones:
