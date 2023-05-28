@@ -20,8 +20,8 @@ Front-End
   + Javascript ES6
   + Bootstrap 5.2
 Back-End
-  + Python 3.10.4
-  + Django 4.0
+  + Python 3.11
+  + Django 4.2
  
 ## Pruebas Realizadas
   + pendientes
