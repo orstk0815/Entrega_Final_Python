@@ -3,10 +3,13 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
 from django.contrib.auth import login, logout, authenticate
 from django.db import IntegrityError
-#from .forms import TaskForm
 
 
 # Create your views here.
+
+def posts(request):
+    return render(request, "posts.html")
+
 
 def signup(request):
     if request.method == "GET":
@@ -19,15 +22,15 @@ def signup(request):
                 user = User.objects.create_user(username=request.POST["username"], password=request.POST["password1"])
                 user.save()
                 login(request, user)
-                return redirect("tasks")
+                return redirect("posts/post")
             except IntegrityError:
                 return render(request, "signup.html", {
                     "form": UserCreationForm,
-                    "error": "Usurio ya existe"
+                    "error": "El usurio ya existe"
                     })
         return render(request, "signup.html", {
             "form": UserCreationForm,
-            "error": "Password no coincide"
+            "error": "El password no coincide"
             })
 
 
@@ -41,7 +44,7 @@ def signin(request):
             "form" : AuthenticationForm
             })
     else:
-        user = authenticate(request, username=request.POST["username"], password=request.POST["password"])
+        user = authenticate(request, username=request.POST["username"], password=request.POST.get("password", ""))
         if user is None:
             return render(request, "signin.html", {
                 "form" : AuthenticationForm,   
@@ -49,5 +52,5 @@ def signin(request):
                 })
         else:
             login(request, user)
-            return redirect("/post/post.html")
+            return redirect("posts/post")
 

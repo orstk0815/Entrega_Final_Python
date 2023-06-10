@@ -9,8 +9,8 @@ def home(request):
     context = {"posts":post}
     return render(request, "posts.html", context)
 
-def post (request, pk):
-    post = Posts.objects.get(id=pk)
+def post (request, id):
+    post = Posts.objects.get(id=id)
     context = {"post":post}
     return render(request, "article.html", context)
 
