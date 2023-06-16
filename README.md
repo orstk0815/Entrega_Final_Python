@@ -22,7 +22,10 @@ Front-End
 Back-End
   + Python 3.11
   + Django 4.2
- 
+Users
+  + super User: orstk  contraseña: paswd1234
+  + user: Pau  contraseña: paswd1234
+
 ## Pruebas Realizadas
   + pendientes
  
