@@ -1,0 +1,135 @@
+{% extends 'base.html' %} {% load static %} {% block title %}Mi perfil{%
+endblock title %} {% block content %}
+
+<div class="container">
+  <h2>Pagina de Perfil</h2>
+</div>
+
+<div class="container">
+  <div class="row row-cols-auto">
+    <div class="col">
+      <div class="my-4">
+        {% if profile_image %}
+        <img
+          class="w-100 h-100"
+          src="{{perfil.imagen_perfil.url}}"
+          alt="Profile image"
+        />
+        {% else %}
+        <img
+          class="w-100 h-100"
+          src="{% static 'images/no_profile_pic.jpg' %}"
+          alt="No profile image"
+        />
+        {% endif %} {% if mismo_usuario %}
+        <form
+          action="{% url 'cambiar_foto' perfil.id %}"
+          enctype="multipart/form-data"
+          method="POST"
+        >
+          {% csrf_token %}
+          <input type="file" class="form-control" name="image" id="image" />
+          <button type="submit" class="btn btn-primary">
+            Cambiar foto de perfil
+          </button>
+        </form>
+        {% endif %}
+      </div>
+
+      <div class="m-auto card border-0 shadow-lg my-4 mx-4">
+        <div class="card-header py-3">
+          {% if mismo_usuario %}
+          <h2 class="h3">Ajustes y perfil</h2>
+          {% else %}
+          <h2 class="h3">Perfil de {{perfil.user.username}}</h2>
+          {% endif %}
+        </div>
+
+        <div class="card-body">
+          {% if mismo_usuario %}
+          <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div id="success"></div>
+            {{ form.as_p }}
+            <p>
+              <label for="id_password">Confirmar contraseña</label>
+              <input
+                class="form-control"
+                name="password"
+                type="password"
+                id="id_password"
+                placeholder="Introduce tu contraseña..."
+              />
+            </p>
+            <div class="text-center">
+              <button type="submit" class="btn btn-form">GUARDAR</button>
+            </div>
+          </form>
+          {% else %}
+          <p class="form-control">{{perfil.user.username}}</p>
+          <p class="form-control">{{perfil.user.first_name}}</p>
+          <p class="form-control">{{perfil.user.last_name}}</p>
+          <p class="form-control">{{perfil.user.email}}</p>
+          {% endif %}
+        </div>
+      </div>
+
+      <div class="container">
+        <h2 class="text-center">Posts</h2>
+        <div class="row row-cols-auto">
+          {% for post in posts %}
+          <div class="col">
+            <div class="card mb-3" style="max-width: 100%">
+              <div class="row g-0">
+                <div class="col-md-4">
+                  <img
+                    src="{{post.image.url}}"
+                    class="img-fluid rounded-start"
+                    alt="{{post.title}} Image"
+                  />
+                </div>
+                <div class="col-md-8">
+                  <div class="card-body">
+                    <h5 class="card-title">{{post.title}}</h5>
+                    <h6 class="card-title">{{post.subtitle}}</h6>
+                    <p class="card-text">{{post.description}}</p>
+                    <a href="{% url 'post' post.id %}" class="btn btn-primary"
+                      >Leer Mas</a
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock content %} {% block script %}
+<script>
+  // If the user already has a profile picture, when it is hover show the camera img
+  const cameraIcon = document.getElementById('camera-icon');
+
+  cameraIcon.addEventListener('mouseover', () => {
+      {% if profile_image %}
+          cameraIcon.classList.add('opacity-100');
+      {% endif %}
+  });
+
+  cameraIcon.addEventListener('mouseout', () => {
+      {% if profile_image %}
+          cameraIcon.classList.remove('opacity-100');
+      {% endif %}
+  });
+
+  // If the changes were successful, show a success message
+  {% if success_message %}
+      const successDiv = document.getElementById('success');
+      successDiv.classList.add('alert', 'alert-success');
+      successDiv.appendChild(document.createTextNode('{{success_message}}'));
+  {% endif %}
+</script>
+{% endblock script %}

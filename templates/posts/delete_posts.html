@@ -1,0 +1,28 @@
+{% extends 'base.html' %} 
+
+{% block content %}
+  <div class="position-absolute top-50 start-50 translate-middle">
+    <div class="container">
+      <div class="card border-danger mb-3" style="max-width: 26rem">
+        <form class="form" method="POST" action="">
+          {% csrf_token %}
+          <div class="card-header">Eliminar</div>
+          <div class="card-body text-danger">
+            <h5 class="card-title">
+              Esta seguro de eliminar el post "{{post.title}}"?
+            </h5>
+            <input
+              class="btn btn-danger btn-primary"
+              role="button"
+              type="submit"
+              value="Confirm"
+            />
+            <a class="btn btn-secondary" role="button" href="{{request.GET.next}}"
+              >Regresar</a
+            >
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+{% endblock %}

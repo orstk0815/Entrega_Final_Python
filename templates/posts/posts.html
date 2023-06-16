@@ -1,0 +1,36 @@
+{% extends 'base.html' %} 
+
+{% block content %}
+  <div class="container">
+    <h2>Pagina de Posts</h2>
+  </div>
+
+  <div class="container">
+    <div class="row row-cols-auto">
+      {% for post in posts %}
+        <div class="col">
+          <div class="card mb-3" style="max-width: 540px">
+            <div class="row g-0">
+              <div class="col-md-4">
+                <img src="{{post.image.url}}" class="img-fluid rounded-start" alt="{{post.title}} Image" />
+              </div>
+              <div class="col-md-8">
+                <div class="card-body">
+                  <h5 class="card-title">{{post.title}}</h5>
+                  <h6 class="card-title">{{post.subtitle}}</h6>
+                  <p class="card-text">{{post.description}}</p>
+                  <a href="{% url 'post' post.id %}" class="btn btn-primary">Leer Mas</a>
+                  {% if not user.is_authenticated %}
+                    <p class="card-text">
+                      <small class="text-body-secondary">Created by <a href="{% url 'usuario_index' post.autor.user.id %}">{{post.autor}}</a></small>
+                    </p>
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+{% endblock %}
