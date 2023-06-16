@@ -24,8 +24,10 @@ Back-End
   + Django 4.2
 
 ## Users
-  + superUser: orstk  contraseña: paswd1234
-  + user: Pau  contraseña: paswd1234
+  + superUser: orstk  
+    contraseña: paswd1234
+  + user: Pau  
+    contraseña: paswd1234
 
 ## Pruebas Realizadas
   + pendientes
